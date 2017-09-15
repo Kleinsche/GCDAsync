@@ -78,11 +78,8 @@ extension ServerTableController {
 extension ServerTableController: GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
-        print("\(newSocket.connectedHost ?? "") 新客户端连接")
+        print("\(newSocket.connectedHost!):\(newSocket.connectedPort) 新客户端连接")
         
-//        for arr in dataArr {
-//            if arr.client == newSocket {break}
-//        }
         let model = ReadModel(client: newSocket)
         dataArr.append(model)
         OperationQueue.main.addOperation {
